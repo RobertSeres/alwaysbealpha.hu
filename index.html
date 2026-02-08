@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALWAYS BE ALPHA | SZKANDER & ERŐ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;700;900&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --black: #000000;
@@ -18,191 +20,872 @@
         }
 
         /* --- SKÁLÁZÁSI LOGIKA --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border-radius: 0 !important;
+        }
 
-        /* 480px felett: Lineáris skálázás (1920px-nél 1rem = 16px) */
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
         @media (min-width: 481px) {
-            html { font-size: 0.8333vw; } 
-        }
-        /* 480px alatt: Fix mobil alap */
-        @media (max-width: 480px) {
-            html { font-size: 16px; }
+            html {
+                font-size: 0.8333vw;
+            }
         }
 
-        body { background-color: var(--black); color: var(--white); font-family: var(--font-body); line-height: 1.6; }
-        .red-text { color: var(--red); }
+        @media (max-width: 480px) {
+            html {
+                font-size: 16px;
+            }
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: var(--font-body);
+            line-height: 1.6;
+        }
+
+        .red-text {
+            color: var(--red);
+        }
 
         /* --- REVEAL ANIMÁCIÓ --- */
-        .reveal { 
-            opacity: 0; 
-            transform: translateY(3rem) scale(0.98); 
+        .reveal {
+            opacity: 0;
+            transform: translateY(3rem) scale(0.98);
             filter: blur(0.6rem);
-            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1); 
+            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
         }
-        .reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 
-        /* --- HÁTTÉRSZÍNEK --- */
-        .bg-black { background-color: var(--black); }
-        .bg-gray { background-color: var(--dark-gray); }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        .bg-black {
+            background-color: var(--black);
+        }
+
+        .bg-gray {
+            background-color: var(--dark-gray);
+        }
 
         /* --- NAVIGÁCIÓ --- */
         nav {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 5rem;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5rem;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(1rem);
             border-bottom: 0.06rem solid var(--light-gray);
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 6.25rem; z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6.25rem;
+            z-index: 1000;
         }
-        .nav-logo-img { height: 2.8rem; transition: var(--transition); }
-        .nav-logo-img:hover { transform: scale(1.1); }
-        .nav-links { display: flex; gap: 2.5rem; }
+
+        .nav-logo-img {
+            height: 2.8rem;
+            transition: var(--transition);
+        }
+
+        .nav-logo-img:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
         .nav-links a {
-            color: var(--white); text-decoration: none; font-family: var(--font-heading);
-            font-size: 1.25rem; letter-spacing: 0.12rem; transition: var(--transition); text-transform: uppercase;
+            color: var(--white);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            letter-spacing: 0.12rem;
+            transition: var(--transition);
+            text-transform: uppercase;
         }
-        .nav-links a:hover { color: var(--red); }
-        #menu-toggle, .menu-btn { display: none; }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        #menu-toggle,
+        .menu-btn {
+            display: none;
+        }
 
         /* --- INDUSTRIAL HERO --- */
         .hero {
-            height: 100vh; width: 100%; position: relative;
+            height: 100vh;
+            width: 100%;
+            position: relative;
             background: var(--black);
-            display: flex; justify-content: center; align-items: center;
-            overflow: hidden; text-align: center; padding: 0 1.25rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+            padding: 0 1.25rem;
         }
+
         .hero::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.12; z-index: 2; pointer-events: none;
+            opacity: 0.12;
+            z-index: 2;
+            pointer-events: none;
         }
+
         .hero-bg-glow {
-            position: absolute; width: 60rem; height: 60rem;
+            position: absolute;
+            width: 60rem;
+            height: 60rem;
             background: radial-gradient(circle, rgba(179, 0, 0, 0.08) 0%, transparent 70%);
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            animation: pulse-glow 8s infinite alternate; z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-glow 8s infinite alternate;
+            z-index: 1;
         }
+
         .hero-grid-industrial {
-            position: absolute; width: 100%; height: 100%;
+            position: absolute;
+            width: 100%;
+            height: 100%;
             background-image: linear-gradient(rgba(255, 255, 255, 0.01) 0.06rem, transparent 0.06rem), linear-gradient(90deg, rgba(255, 255, 255, 0.01) 0.06rem, transparent 0.06rem);
-            background-size: 3.75rem 3.75rem; z-index: 1;
+            background-size: 3.75rem 3.75rem;
+            z-index: 1;
         }
-        .beam { position: absolute; background: rgba(255, 255, 255, 0.01); z-index: 1; }
-        .beam-v { width: 0.06rem; height: 100%; top: 0; animation: move-v 15s infinite linear; }
-        .beam-h { height: 0.06rem; width: 100%; left: 0; animation: move-h 12s infinite linear; }
 
-        @keyframes move-v { 0% { transform: translateX(-100vw); } 100% { transform: translateX(100vw); } }
-        @keyframes move-h { 0% { transform: translateY(-100vh); } 100% { transform: translateY(100vh); } }
-        @keyframes pulse-glow { 0% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.1); } }
-
-        .hero-content { position: relative; z-index: 5; }
-        .hero-content h1 { font-family: var(--font-heading); font-size: 10rem; line-height: 0.8; letter-spacing: -0.12rem; margin-bottom: 1.5rem; }
-        .hero-content p { font-size: 1.4rem; letter-spacing: 0.12rem; color: #aaa; margin-bottom: 3rem; max-width: 50rem; margin-left: auto; margin-right: auto; }
-        .btn-hero { 
-            display: inline-block; background: var(--red); color: white; padding: 1.25rem 3.75rem; 
-            font-family: var(--font-heading); font-size: 1.8rem; text-decoration: none; 
-            transition: var(--transition); letter-spacing: 0.18rem; border: 0.12rem solid var(--red);
+        .beam {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.01);
+            z-index: 1;
         }
-        .btn-hero:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+
+        .beam-v {
+            width: 0.06rem;
+            height: 100%;
+            top: 0;
+            animation: move-v 15s infinite linear;
+        }
+
+        .beam-h {
+            height: 0.06rem;
+            width: 100%;
+            left: 0;
+            animation: move-h 12s infinite linear;
+        }
+
+        @keyframes move-v {
+            0% {
+                transform: translateX(-100vw);
+            }
+
+            100% {
+                transform: translateX(100vw);
+            }
+        }
+
+        @keyframes move-h {
+            0% {
+                transform: translateY(-100vh);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                opacity: 0.2;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            100% {
+                opacity: 0.4;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 10rem;
+            line-height: 0.8;
+            letter-spacing: -0.12rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            letter-spacing: 0.12rem;
+            color: #aaa;
+            margin-bottom: 3rem;
+            max-width: 50rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-hero {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 1.25rem 3.75rem;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: var(--transition);
+            letter-spacing: 0.18rem;
+            border: 0.12rem solid var(--red);
+        }
+
+        .btn-hero:hover {
+            background: var(--white);
+            color: var(--black);
+            border-color: var(--white);
+        }
 
         /* --- SZEKCIÓK --- */
-        .section-padding { padding: 7.5rem 0; }
-        .container { max-width: 75rem; margin: 0 auto; width: 90%; }
-        h2 { font-family: var(--font-heading); font-size: 5rem; line-height: 0.8; margin-bottom: 2.5rem; }
-        .red-line { width: 5rem; height: 0.37rem; background: var(--red); margin-bottom: 1.5rem; }
+        .section-padding {
+            padding: 7.5rem 0;
+        }
+
+        .container {
+            max-width: 75rem;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 5rem;
+            line-height: 0.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .red-line {
+            width: 5rem;
+            height: 0.37rem;
+            background: var(--red);
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- ROADMAP SPLIT-SCREEN --- */
+        .roadmap-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .roadmap-left {
+            position: sticky;
+            top: 10rem;
+            height: fit-content;
+            padding-left: 2rem;
+            border-left: 0.12rem solid #222;
+        }
+
+        /* Scroll Indicator Line */
+        .roadmap-progress-bar {
+            position: absolute;
+            left: -0.06rem;
+            top: 0;
+            width: 0.25rem;
+            background: var(--red);
+            height: 0%;
+            /* JS-el vezérelve */
+            transition: height 0.1s linear;
+            box-shadow: 0 0 1rem var(--red);
+        }
+
+        .milestone-nav-item {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            cursor: pointer;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .milestone-nav-item.active {
+            color: var(--red);
+            transform: translateX(1rem);
+        }
+
+        .roadmap-right {
+            padding-bottom: 10rem;
+        }
+
+        .milestone-content-block {
+            margin-bottom: 12rem;
+            opacity: 0.3;
+            transition: var(--transition);
+        }
+
+        .milestone-content-block.active {
+            opacity: 1;
+        }
+
+        .milestone-content-block p {
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            max-width: 40rem;
+        }
 
         /* --- KATALÓGUS --- */
-        .filter-container { margin-bottom: 3rem; display: flex; gap: 1.25rem; flex-wrap: wrap; }
-        .filter-btn { background: transparent; border: 0.06rem solid var(--light-gray); color: var(--white); padding: 0.6rem 1.8rem; font-family: var(--font-heading); font-size: 1.25rem; cursor: pointer; transition: var(--transition); }
-        .filter-btn.active, .filter-btn:hover { background: var(--red); border-color: var(--red); }
-        
-        .inventory-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.12rem; background: var(--light-gray); border: 0.12rem solid var(--light-gray); }
-        .product-card { background: var(--black); padding: 2.8rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 40rem; border: 0.06rem solid transparent; transition: var(--transition); }
-        .product-card:hover { transform: translateY(-0.6rem); background: #050505; border-color: var(--red); box-shadow: 0 1.25rem 2.5rem rgba(179, 0, 0, 0.15); }
-        .product-card.hidden { display: none; }
-        .product-card h4 { font-family: var(--font-heading); font-size: 2.4rem; margin-bottom: 1.25rem; transition: var(--transition); }
-        .product-card:hover h4 { color: var(--red); }
-        .category-tag { font-size: 0.7rem; letter-spacing: 0.12rem; color: var(--red); border: 0.06rem solid var(--red); padding: 0.25rem 0.6rem; display: inline-block; margin-bottom: 1rem; font-weight: 700; }
-        .product-details li { font-size: 0.9rem; color: #999; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; }
-        .product-details li::before { content: ""; width: 0.8rem; height: 0.12rem; background: var(--red); margin-right: 1rem; }
-        .price { font-family: var(--font-heading); font-size: 2rem; display: block; margin: 1.25rem 0; }
-        
-        .gallery-toggle-btn { background: transparent; color: #555; border: 0.06rem solid #222; padding: 0.75rem; font-family: var(--font-heading); width: 100%; margin-bottom: 1rem; cursor: pointer; transition: var(--transition); }
-        .product-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
-        .product-gallery.open { max-height: 12rem; margin-bottom: 1.5rem; }
-        .gallery-img { aspect-ratio: 1/1; background: #0a0a0a; border: 0.06rem solid #222; cursor: pointer; object-fit: cover; width: 100%; transition: border-color 0.3s ease; }
-        .gallery-img:hover { border-color: var(--red); }
-        .btn-order { display: block; width: 100%; background: var(--red); color: var(--white); padding: 1.1rem; text-decoration: none; font-family: var(--font-heading); font-size: 1.5rem; text-align: center; letter-spacing: 0.12rem; transition: var(--transition); }
-        .btn-order:hover { background: var(--white); color: var(--black); }
+        .filter-container {
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 0.06rem solid var(--light-gray);
+            color: var(--white);
+            padding: 0.6rem 1.8rem;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.12rem;
+            background: var(--light-gray);
+            border: 0.12rem solid var(--light-gray);
+        }
+
+        .product-card {
+            background: var(--black);
+            padding: 2.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 40rem;
+            border: 0.06rem solid transparent;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-0.6rem);
+            background: #050505;
+            border-color: var(--red);
+            box-shadow: 0 1.25rem 2.5rem rgba(179, 0, 0, 0.15);
+        }
+
+        .product-card.hidden {
+            display: none;
+        }
+
+        .product-card h4 {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            margin-bottom: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .product-card:hover h4 {
+            color: var(--red);
+        }
+
+        .category-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.12rem;
+            color: var(--red);
+            border: 0.06rem solid var(--red);
+            padding: 0.25rem 0.6rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .product-details li {
+            font-size: 0.9rem;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-details li::before {
+            content: "";
+            width: 0.8rem;
+            height: 0.12rem;
+            background: var(--red);
+            margin-right: 1rem;
+        }
+
+        .price {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            display: block;
+            margin: 1.25rem 0;
+        }
+
+        .gallery-toggle-btn {
+            background: transparent;
+            color: #555;
+            border: 0.06rem solid #222;
+            padding: 0.75rem;
+            font-family: var(--font-heading);
+            width: 100%;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .product-gallery.open {
+            max-height: 12rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-img {
+            aspect-ratio: 1/1;
+            background: #0a0a0a;
+            border: 0.06rem solid #222;
+            cursor: pointer;
+            object-fit: cover;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .gallery-img:hover {
+            border-color: var(--red);
+        }
+
+        .btn-order {
+            display: block;
+            width: 100%;
+            background: var(--red);
+            color: var(--white);
+            padding: 1.1rem;
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            text-align: center;
+            letter-spacing: 0.12rem;
+            transition: var(--transition);
+        }
+
+        .btn-order:hover {
+            background: var(--white);
+            color: var(--black);
+        }
 
         /* --- SOCIAL FEED --- */
-        .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
-        .video-box { aspect-ratio: 9 / 16; background: var(--black); border: 0.12rem solid var(--light-gray); overflow: hidden; transition: var(--transition); position: relative; cursor: pointer; }
-        .video-box:hover { border-color: var(--red); transform: translateY(-0.6rem); box-shadow: 0 1.25rem 2.5rem rgba(179, 0, 0, 0.3); }
-        .video-box video { width: 100%; height: 100%; object-fit: cover; }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+        }
+
+        .video-box {
+            aspect-ratio: 9 / 16;
+            background: var(--black);
+            border: 0.12rem solid var(--light-gray);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .video-box:hover {
+            border-color: var(--red);
+            transform: translateY(-0.6rem);
+            box-shadow: 0 1.25rem 2.5rem rgba(179, 0, 0, 0.3);
+        }
+
+        .video-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-box:hover .video-controls {
+            opacity: 1;
+        }
+
+        .play-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .play-btn svg {
+            width: 2rem;
+            height: 2rem;
+            fill: var(--white);
+            transition: fill 0.3s;
+        }
+
+        .play-btn:hover svg {
+            fill: var(--red);
+        }
+
+        .volume-slider {
+            flex-grow: 1;
+            height: 0.25rem;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            border-radius: 0.12rem;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 0.8rem;
+            height: 0.8rem;
+            background: var(--red);
+            border-radius: 50%;
+            cursor: pointer;
+        }
 
         /* --- KAPCSOLAT --- */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
-        .contact-info p { font-size: 1.2rem; margin-bottom: 1.25rem; line-height: 1.6; }
-        .contact-form input, .contact-form textarea { background: #0d0d0d; border: 0.06rem solid #222; padding: 1.25rem; color: white; width: 100%; margin-bottom: 0.9rem; font-family: var(--font-body); transition: var(--transition); }
-        .contact-form input:focus { border-color: var(--red); outline: none; }
-        .btn-send { background: var(--white); color: var(--black); border: none; padding: 1.25rem; font-family: var(--font-heading); font-size: 1.8rem; cursor: pointer; width: 100%; transition: var(--transition); }
-        .btn-send:hover { background: var(--red); color: white; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: #0d0d0d;
+            border: 0.06rem solid #222;
+            padding: 1.25rem;
+            color: white;
+            width: 100%;
+            margin-bottom: 0.9rem;
+            font-family: var(--font-body);
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus {
+            border-color: var(--red);
+            outline: none;
+        }
+
+        .btn-send {
+            background: var(--white);
+            color: var(--black);
+            border: none;
+            padding: 1.25rem;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .btn-send:hover {
+            background: var(--red);
+            color: white;
+        }
 
         /* --- SOCIAL IKONOK --- */
-        .social-icons { display: flex; gap: 1.25rem; }
-        .social-link { display: flex; align-items: center; justify-content: center; width: 2.8rem; height: 2.8rem; background: var(--light-gray); transition: var(--transition); text-decoration: none; }
-        .social-link svg { width: 1.25rem; height: 1.25rem; fill: var(--white); }
-        .social-link:hover { background: var(--red); transform: translateY(-0.3rem); }
+        .social-icons {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.8rem;
+            height: 2.8rem;
+            background: var(--light-gray);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-link svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: var(--white);
+        }
+
+        .social-link:hover {
+            background: var(--red);
+            transform: translateY(-0.3rem);
+        }
+
+        .designer-link:hover {
+            color: var(--red) !important;
+        }
 
         /* --- FOOTER --- */
-        footer { padding: 5rem 1.25rem 2.5rem; border-top: 0.5rem solid var(--red); text-align: center; background: var(--black); }
-        .footer-logo-img { height: 5rem; margin-bottom: 1rem; }
-        .footer-brand-text { font-family: var(--font-heading); font-size: 2.5rem; letter-spacing: 0.18rem; margin-bottom: 2rem; text-transform: uppercase; }
-        .footer-socials { justify-content: center; margin-bottom: 2.5rem; }
-        .copyright { margin-top: 2.5rem; font-size: 0.75rem; color: #444; letter-spacing: 0.12rem; border-top: 0.06rem solid #111; padding-top: 1.8rem; text-transform: uppercase; }
+        footer {
+            padding: 5rem 1.25rem 2.5rem;
+            border-top: 0.5rem solid var(--red);
+            text-align: center;
+            background: var(--black);
+        }
+
+        .footer-logo-img {
+            height: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand-text {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            letter-spacing: 0.18rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .footer-socials {
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .copyright {
+            margin-top: 2.5rem;
+            font-size: 0.75rem;
+            color: #444;
+            letter-spacing: 0.12rem;
+            border-top: 0.06rem solid #111;
+            padding-top: 1.8rem;
+            text-transform: uppercase;
+        }
 
         /* LIGHTBOX */
-        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 0 30rem; cursor: zoom-out; }
-        .lightbox img { width: 100%; max-height: 80vh; object-fit: contain; border: 0.06rem solid #222; }
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30rem;
+            cursor: zoom-out;
+        }
+
+        .lightbox img {
+            width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border: 0.06rem solid #222;
+        }
 
         /* --- MOBIL LAYOUT (480px ALATT) --- */
         @media (max-width: 480px) {
-            nav { padding: 0 20px; height: 70px; }
-            .nav-logo-img { height: 35px; }
-            .menu-btn { display: flex; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; }
-            .menu-btn span { width: 30px; height: 3px; background: var(--white); transition: 0.3s; }
-            .nav-links { position: fixed; top: 0; right: 0; width: 100%; height: 100vh; background: var(--black); flex-direction: column; align-items: center; justify-content: center; gap: 30px; transform: translateX(100%); transition: 0.5s ease; z-index: 1050; }
-            #menu-toggle:checked ~ .nav-links { transform: translateX(0); }
-            .hero-content h1 { font-size: 4.5rem; }
-            .section-padding { padding: 60px 0; }
-            
-            /* MOBIL KATALÓGUS: 2 SOR, 3 OSZLOP, GÖRGETHETŐ */
-            .inventory-grid { 
-                display: grid; 
-                grid-template-rows: repeat(2, 1fr); 
-                grid-auto-flow: column; 
-                overflow-x: auto; 
-                gap: 15px; 
-                background: transparent; 
-                border: none; 
+            nav {
+                padding: 0 20px;
+                height: 70px;
+            }
+
+            .nav-logo-img {
+                height: 35px;
+            }
+
+            .menu-btn {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                cursor: pointer;
+                z-index: 1100;
+            }
+
+            .menu-btn span {
+                width: 30px;
+                height: 3px;
+                background: var(--white);
+                transition: 0.3s;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--black);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transform: translateX(100%);
+                transition: 0.5s ease;
+                z-index: 1050;
+            }
+
+            #menu-toggle:checked~.nav-links {
+                transform: translateX(0);
+            }
+
+            .hero-content h1 {
+                font-size: 4.5rem;
+            }
+
+            .section-padding {
+                padding: 60px 0;
+            }
+
+            .roadmap-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .roadmap-left {
+                position: relative;
+                top: 0;
+                border-left: none;
+                padding-left: 0;
+                margin-bottom: 3rem;
+            }
+
+            .roadmap-progress-bar {
+                display: none;
+            }
+
+            .milestone-nav-item {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .milestone-content-block {
+                margin-bottom: 4rem;
+                opacity: 1;
+            }
+
+            .inventory-grid {
+                display: grid;
+                grid-template-rows: repeat(2, 1fr);
+                grid-auto-flow: column;
+                overflow-x: auto;
+                gap: 15px;
+                background: transparent;
+                border: none;
                 padding: 0 20px 20px;
                 scroll-snap-type: x mandatory;
                 scrollbar-width: none;
             }
-            .inventory-grid::-webkit-scrollbar { display: none; }
-            .product-card { min-width: 280px; min-height: auto; padding: 25px 20px; border: 1px solid var(--light-gray); scroll-snap-align: center; }
 
-            .video-grid { display: flex; overflow-x: auto; gap: 15px; padding: 0 20px 20px; scroll-snap-type: x mandatory; margin-left: -5%; width: 110%; scrollbar-width: none; }
-            .video-grid::-webkit-scrollbar { display: none; }
-            .video-box { min-width: 260px; flex: 0 0 260px; scroll-snap-align: center; }
-            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-            .lightbox { padding: 0 20px; }
+            .inventory-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .product-card {
+                min-width: 280px;
+                min-height: auto;
+                padding: 25px 20px;
+                border: 1px solid var(--light-gray);
+                scroll-snap-align: center;
+            }
+
+            .video-grid {
+                display: flex;
+                overflow-x: auto;
+                gap: 15px;
+                padding: 0 20px 20px;
+                scroll-snap-type: x mandatory;
+                margin-left: -5%;
+                width: 110%;
+                scrollbar-width: none;
+            }
+
+            .video-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .video-box {
+                min-width: 260px;
+                flex: 0 0 260px;
+                scroll-snap-align: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .lightbox {
+                padding: 0 20px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -225,7 +908,7 @@
         <div class="beam beam-v" style="left: 80%; animation-delay: -10s;"></div>
         <div class="beam beam-h" style="top: 30%; animation-delay: -2s;"></div>
         <div class="beam beam-h" style="top: 70%; animation-delay: -7s;"></div>
-        
+
         <div class="hero-content reveal active">
             <h1>ALWAYS BE <br><span class="red-text">ALPHA</span></h1>
             <p>A középszerűség nem opció. Professzionális szkander és erőfejlesztő eszközök a határok átlépéséhez.</p>
@@ -237,13 +920,77 @@
         <div class="container">
             <div class="red-line"></div>
             <h2>RÓLUNK</h2>
-            <div class="about-content">
-                <p style="font-size: 1.4rem; max-width: 55rem; margin-bottom: 2rem;">Az ALWAYS BE <span class="red-text">ALPHA</span> prémium szkander asztalok és erőfejlesztő eszközök tervezésével és gyártásával foglalkozik. Célunk a legmagasabb ipari standardok biztosítása a professzionális sportolók számára.</p>
-                <div class="social-icons">
-                    <a href="https://www.tiktok.com/@alwaysbe.alpha" target="_blank" class="social-link"><svg viewBox="0 0 448 512"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"/></svg></a>
-                    <a href="https://www.instagram.com/alwaysbe.alpha" target="_blank" class="social-link"><svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a>
-                    <a href="https://www.youtube.com/@alwaysbe.alpha18" target="_blank" class="social-link"><svg viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.781 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+
+            <p style="font-size: 1.4rem; max-width: 55rem; margin-bottom: 2rem;">Az ALWAYS BE <span
+                    class="red-text">ALPHA</span> prémium szkander asztalok és erőfejlesztő eszközök tervezésével és
+                gyártásával foglalkozik. Célunk a legmagasabb ipari standardok biztosítása a professzionális sportolók
+                számára.</p>
+
+            <p class="red-text"
+                style="font-family: var(--font-heading); font-size: 1.8rem; margin-top: 2rem; margin-bottom: 2.5rem;">
+                About the founder, Jónás Márk:</p>
+
+            <!-- ROADMAP IMPLEMENTATION -->
+            <div class="roadmap-wrapper">
+                <div class="roadmap-left">
+                    <div class="roadmap-progress-bar" id="roadmap-bar"></div>
+                    <div class="milestone-nav-item active" data-milestone="m1">SPORTMÚLT - SZKANDER</div>
+                    <div class="milestone-nav-item" data-milestone="m2">SPORTMÚLT - STREET WORKOUT</div>
+                    <div class="milestone-nav-item" data-milestone="m3">A JELENLEGI FÓKUSZ (GYŰRŰ)</div>
+                    <div class="milestone-nav-item" data-milestone="m4">VILÁGKÉP ÉS KITÖRÉS</div>
+                    <div class="milestone-nav-item" data-milestone="m5">FILOZÓFIA</div>
+                    <div class="milestone-nav-item" data-milestone="m6">CÉLKITŰZÉSEK 2028</div>
                 </div>
+
+                <div class="roadmap-right">
+                    <div class="milestone-content-block active" id="m1">
+                        <p>"5 év Szkander: Világbajnoki 4. Hely, Európa Bajnoki 3. Hely, Világkupa győztes, Többszörös
+                            Nemzetközi bajnoki cím, Többszörös Magyar Bajnoki cím."</p>
+                    </div>
+                    <div class="milestone-content-block" id="m2">
+                        <p>"7 év Street Workout: 2022-es Magyar Bajnoki cím & Világbajnoki 4. Helyezet. + 3-4 év
+                            harcművészet / küzdősport hobbi szinten."</p>
+                    </div>
+                    <div class="milestone-content-block" id="m3">
+                        <p>"2025 októbere óta minden tudásomat, és energiámat a szertornán belül a gyűrűre fordítom,
+                            amiben célom az olimpia."</p>
+                    </div>
+                    <div class="milestone-content-block" id="m4">
+                        <p>"A világ egy elég érdekes hellyé evolválódik, egyre inkább a technológia lesz az ami uralni
+                            fogja a teret, és az irányító hatalmak, a felsőbb erők egyre jobban fogják az embereket
+                            szinte bábként mozgatni az életben."</p>
+                        <p>"Ennek elkerülése érdekében szeretném az emberekben felébreszteni azt a fényt, ami mindig is
+                            ott volt... a gondolataink majd tetteink segítségével kitörhetünk a rendszerből."</p>
+                    </div>
+                    <div class="milestone-content-block" id="m5">
+                        <p>"14 éves korom óta foglalkozom az önfejlesztés világával: 'Bárkik lehetünk, bármit tehetünk
+                            és bármink lehet, amit csak szeretnénk!'"</p>
+                        <p>"Alázat, kitartás, pozitivitás, feltétel nélküli szeretet, elfogadás és mások önzetlen
+                            segítsége az, ami főként jellemez."</p>
+                    </div>
+                    <div class="milestone-content-block" id="m6">
+                        <p>"2028-ban ott leszek az olimpián! Saját konditermem lesz! Világszerte segítjük az embereket
+                            az Always Be Alpha-val!"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-icons" style="margin-top: 4rem;">
+                <a href="https://www.tiktok.com/@alwaysbe.alpha" target="_blank" class="social-link"><svg
+                        viewBox="0 0 448 512">
+                        <path
+                            d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z" />
+                    </svg></a>
+                <a href="https://www.instagram.com/alwaysbe.alpha" target="_blank" class="social-link"><svg
+                        viewBox="0 0 448 512">
+                        <path
+                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                    </svg></a>
+                <a href="https://www.youtube.com/@alwaysbe.alpha18" target="_blank" class="social-link"><svg
+                        viewBox="0 0 576 512">
+                        <path
+                            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.781 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
+                    </svg></a>
             </div>
         </div>
     </section>
@@ -266,9 +1013,54 @@
             <div class="red-line"></div>
             <h2>SOCIAL FEED</h2>
             <div class="video-grid">
-                <div class="video-box"><video src="aba_video1.mp4" loop muted playsinline onmouseover="this.play()" onmouseout="this.pause()"></video></div>
-                <div class="video-box"><video src="aba_video2.mp4" loop muted playsinline onmouseover="this.play()" onmouseout="this.pause()"></video></div>
-                <div class="video-box"><video src="aba_video3.mp4" loop muted playsinline onmouseover="this.play()" onmouseout="this.pause()"></video></div>
+                <div class="video-box" onclick="toggleVideo(this)">
+                    <video src="aba_video1.mp4" loop muted playsinline></video>
+                    <div class="video-controls">
+                        <button class="play-btn"
+                            onclick="event.stopPropagation(); toggleVideo(this.closest('.video-box'))">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                            </svg>
+                        </button>
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="0"
+                            onclick="event.stopPropagation()" oninput="updateVolume(this)">
+                    </div>
+                </div>
+                <div class="video-box" onclick="toggleVideo(this)">
+                    <video src="aba_video2.mp4" loop muted playsinline></video>
+                    <div class="video-controls">
+                        <button class="play-btn"
+                            onclick="event.stopPropagation(); toggleVideo(this.closest('.video-box'))">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                            </svg>
+                        </button>
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="0"
+                            onclick="event.stopPropagation()" oninput="updateVolume(this)">
+                    </div>
+                </div>
+                <div class="video-box" onclick="toggleVideo(this)">
+                    <video src="aba_video3.mp4" loop muted playsinline></video>
+                    <div class="video-controls">
+                        <button class="play-btn"
+                            onclick="event.stopPropagation(); toggleVideo(this.closest('.video-box'))">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                            </svg>
+                        </button>
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="0"
+                            onclick="event.stopPropagation()" oninput="updateVolume(this)">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -299,19 +1091,42 @@
             <img src="logo.png" alt="Logo" class="footer-logo-img" style="margin: 0 auto 1rem;">
             <div class="footer-brand-text">ALWAYS BE <span class="red-text">ALPHA</span></div>
             <div class="social-icons footer-socials">
-                <a href="https://www.tiktok.com/@alwaysbe.alpha" target="_blank" class="social-link"><svg viewBox="0 0 448 512"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"/></svg></a>
-                <a href="https://www.instagram.com/alwaysbe.alpha" target="_blank" class="social-link"><svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a>
-                <a href="https://www.youtube.com/@alwaysbe.alpha18" target="_blank" class="social-link"><svg viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.781 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+                <a href="https://www.tiktok.com/@alwaysbe.alpha" target="_blank" class="social-link"><svg
+                        viewBox="0 0 448 512">
+                        <path
+                            d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z" />
+                    </svg></a>
+                <a href="https://www.instagram.com/alwaysbe.alpha" target="_blank" class="social-link"><svg
+                        viewBox="0 0 448 512">
+                        <path
+                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                    </svg></a>
+                <a href="https://www.youtube.com/@alwaysbe.alpha18" target="_blank" class="social-link"><svg
+                        viewBox="0 0 576 512">
+                        <path
+                            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.781 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
+                    </svg></a>
             </div>
-            <div class="copyright">&copy; 2026 ALWAYS BE ALPHA. MINDEN JOG FENNTARTVA.</div>
+            <div class="footer-bottom"
+                style="display: flex; justify-content: space-between; align-items: center; margin-top: 2.5rem; border-top: 0.06rem solid #111; padding-top: 1.8rem;">
+                <div class="copyright" style="margin: 0; border: none; padding: 0;">&copy; 2026 ALWAYS BE ALPHA. MINDEN
+                    JOG FENNTARTVA.</div>
+                <div class="designer-credit"
+                    style="font-size: 0.75rem; color: #444; letter-spacing: 0.12rem; text-transform: uppercase;">
+                    Tervezte és készítette: <a href="https://www.advant.hu" target="_blank" class="designer-link"
+                        style="color: inherit; text-decoration: none; transition: var(--transition);">Advant. Premium
+                        Digital Solutions.</a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <div id="lightbox" class="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
 
     <script>
+        // --- KATALÓGUS ADATOK ---
         const products = [
-            { cat: 'gepek', name: 'SZKANDER ASZTAL', price: '150.000 - 165.000 FT', details: ['Fix / Szétszedhető', 'Prémium bőr', 'Ipari szabvány'] },
+            { cat: 'gepek', name: 'SZKANDER ASZTAL', price: '125.000 - 165.000 FT', details: ['Fix / Szétszedhető', 'Prémium bőr', 'Ipari szabvány'] },
             { cat: 'gepek', name: 'CSIGÁS GÉP', price: '65.000 FT', details: ['Asztalra szerelhető', 'Masszív acél', 'Precíziós görgők'] },
             { cat: 'gepek', name: 'UJJERŐSÍTŐ GÉP', price: '65.000 FT', details: ['Izolált fejlesztés', 'Acél váz', 'Örök garancia'] },
             { cat: 'ruhazat', name: 'ALPHA PULCSI', price: '12.990 FT', details: ['450g Heavy Cotton', 'Hímzett logó', 'Athletic Fit'] },
@@ -363,10 +1178,70 @@
             lb.style.display = 'flex';
         }
 
+        // --- ROADMAP LOGIKA ---
+        const roadmapBar = document.getElementById('roadmap-bar');
+        const milestoneBlocks = document.querySelectorAll('.milestone-content-block');
+        const navItems = document.querySelectorAll('.milestone-nav-item');
+
+        const roadmapObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+
+                    // Aktív osztályok kezelése
+                    milestoneBlocks.forEach(b => b.classList.remove('active'));
+                    navItems.forEach(n => n.classList.remove('active'));
+
+                    entry.target.classList.add('active');
+                    document.querySelector(`[data-milestone="${id}"]`).classList.add('active');
+
+                    // Progress bar magasság számítása
+                    const index = Array.from(milestoneBlocks).indexOf(entry.target);
+                    const progress = ((index + 1) / milestoneBlocks.length) * 100;
+                    roadmapBar.style.height = `${progress}%`;
+                }
+            });
+        }, { threshold: 0.6, rootMargin: "-10% 0px -40% 0px" });
+
+        milestoneBlocks.forEach(block => roadmapObserver.observe(block));
+
+        // Kattintásra görgetés a roadmap-en
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.getAttribute('data-milestone');
+                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+
+        // --- ÁLTALÁNOS REVEAL ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- VIDEO VEZÉRLÉS ---
+        function toggleVideo(box) {
+            const video = box.querySelector('video');
+            const playIcon = box.querySelector('.play-icon');
+            const pauseIcon = box.querySelector('.pause-icon');
+
+            if (video.paused) {
+                video.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            } else {
+                video.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        }
+
+        function updateVolume(slider) {
+            const video = slider.closest('.video-box').querySelector('video');
+            video.volume = slider.value;
+            video.muted = (slider.value === "0");
+        }
     </script>
 </body>
+
 </html>
